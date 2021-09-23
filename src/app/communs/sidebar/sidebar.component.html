@@ -1,0 +1,75 @@
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div class="bg-dark border-dark" id="sidebar-wrapper">
+    <div class="sidebar-heading"></div>
+    <div>
+      <ul class="list-group list-group-flush">
+
+<!--
+        Menu de Cadastros
+-->
+
+        <li class="active">
+          <a href="#cadastroSubmenu"
+             data-toggle="collapse"
+             aria-expanded="false"
+             class="dropdown-toggle list-group-item list-group-item-action bg-dark">Cadastros</a>
+          <ul class="collapse list-unstyled" id="cadastroSubmenu">
+            <li>
+              <a routerLink="cadastro-usuario" class="list-group-item list-group-item-action bg-dark">Cadastro de Usuários</a>
+            </li>
+
+            <li>
+              <a routerLink="cadastro-peixe" class="list-group-item list-group-item-action bg-dark">Cadastro Peixe</a>
+            </li>
+
+            <li>
+              <a routerLink="cadastro-tanque" class="list-group-item list-group-item-action bg-dark">Cadastro Tanque</a>
+            </li>
+
+            <li>
+              <a routerLink="cadastro-temperatura" class="list-group-item list-group-item-action bg-dark">Cadastro Temperatura</a>
+            </li>
+          </ul>
+        </li>
+
+<!--
+        Menu de Movimentações
+-->
+
+        <li class="active">
+          <a href="#movimentoSubmenu"
+             data-toggle="collapse"
+             aria-expanded="false"
+             class="dropdown-toggle list-group-item list-group-item-action bg-dark">Movimentação</a>
+          <ul class="collapse list-unstyled" id="movimentoSubmenu">
+            <li>
+              <a routerLink="cadastro-usuario" class="list-group-item list-group-item-action bg-dark">Cadastro de Usuários</a>
+            </li>
+
+            <li>
+              <a routerLink="cadastro-peixe" class="list-group-item list-group-item-action bg-dark">Cadastro Peixe</a>
+            </li>
+
+            <li>
+              <a routerLink="cadastro-tanque" class="list-group-item list-group-item-action bg-dark">Cadastro Tanque</a>
+            </li>
+
+            <li>
+              <a routerLink="cadastro-temperatura" class="list-group-item list-group-item-action bg-dark">Cadastro Temperatura</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
