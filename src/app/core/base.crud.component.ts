@@ -25,6 +25,8 @@ export class BaseCrudComponent<T> implements OnInit {
   classButton: string = 'btn btn-outline-secondary float-right';
   validar: string;
 
+  oculta: boolean = false;
+
   msgError: string;
 
   constructor(mainservice: any,

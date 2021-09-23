@@ -12,28 +12,33 @@ import {CadastroTanqueComponent} from "./cadastro-tanque/cadastro.tanque.compone
 import {TanqueService} from "../services/tanque.service";
 import {PeixeService} from "../services/peixe.service";
 import {CadastroPeixeComponent} from "./cadastro-peixe/cadastro.peixe.component";
+import {CadastroTemperaturaComponent} from "./cadastro-temperatura/cadastro.temperatura.component";
+import {TemperaturaService} from "../services/temperatura.service";
+import {CollapseModule} from "ngx-bootstrap/collapse";
 
 
 @NgModule({
   declarations: [
     CadastroUsuarioComponent,
-    HeaderComponent,
     CadastroTanqueComponent,
-    CadastroPeixeComponent
+    CadastroPeixeComponent,
+    CadastroTemperaturaComponent
     ],
-  exports: [
-    CadastroUsuarioComponent,
-    HeaderComponent,
-    CadastroTanqueComponent,
-    CadastroPeixeComponent
-    ],
-  imports: [CommonModule, FormsModule, Ng2SearchPipeModule, UtilModule, CommunsModule],
+  exports: [],
+  imports: [
+    CommonModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+    UtilModule,
+    CommunsModule,
+  ],
   providers: [
     UsuarioService,
     BsModalService,
     BsModalRef,
     TanqueService,
     PeixeService,
+    TemperaturaService,
     ]
 })
 export class CadastroModule { }

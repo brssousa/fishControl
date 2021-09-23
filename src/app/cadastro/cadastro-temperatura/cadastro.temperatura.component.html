@@ -1,6 +1,6 @@
 <header
-  titulo="Cadastro de Usuário"
-  editTitulo="Alterar Usuário"
+  titulo="Cadastro de Temperatura"
+  editTitulo="Alterar Temperatura"
   [modo]="editMode"
   (onClear)="clean()"
   (onChange)="validator()">
@@ -9,22 +9,23 @@
 <!-- FORM -->
   <form #mainForm="ngForm" [class]="validar">
     <div class="form-group">
-      <label for="nome" class="form-control-label">Usuário</label>
-      <input type="text" id="nome" name="nome" class="form-control" [(ngModel)]="filter.nome" required #nome="ngModel">
-      <div class="invalid-feedback" *ngIf="!nome.valid">Usuário é campo obrigatótio.</div>
+      <label for="mes">Selecione o Mês</label>
+      <select class="form-control" id="mes" name="mes" [(ngModel)]="filter.mes" required #mes="ngModel">
+        <option></option>
+        <option *ngFor="let mes of meses" [value]="mes.mes">{{mes.nome}}</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="!mes.valid">Mês é obrigatótio.</div>
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" class="form-control" [(ngModel)]="filter.email" placeholder="exemplo@seudominio.com.br" email required #email="ngModel">
-      <div class="invalid-feedback" *ngIf="!email.valid">
-        {{ email.value ? 'Informe um e-mail válido' : 'E-mail é campo obrigatório' }}
+    <div class="form-group form-row">
+        <div class="col-11">
+          <label for="temperatura">Temperatura</label>
+          <input type="range" class="form-control-range" id="temperatura" name="temperatura" min="0" max="50" style="min-width: 90%" [(ngModel)]="filter.temperatura">
+        </div>
+        <div class="col-1">
+          <label></label>
+          <input type="text" class="form-control" [value]="filter.temperatura" readonly>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="senha">Senha</label>
-      <input type="password" id="senha" name="senha" class="form-control" [(ngModel)]="filter.senha" required #senha="ngModel">
-      <div class="invalid-feedback" *ngIf="!senha.valid">Senha é campo obrigatótio.</div>
-    </div>
   </form>
 
 <!-- GRID -->
@@ -38,22 +39,21 @@
   <table class="table table-striped" style="height: 100%">
     <thead>
     <tr class="table-primary ">
-      <th scope="col" width="30px">#</th>
-      <th #cellElement scope="col" sortable="nome" (sort)="onSort($event)">Usuários</th>
-      <th scope="col">E-mail</th>
+      <th #cellElement scope="col" sortable="mes" (sort)="onSort($event)">Meses</th>
+      <th #cellElement scope="col" sortable="temperatura" (sort)="onSort($event)">Temperatura</th>
       <th scope="col" class="align-right"></th>
       <th scope="col" class="align-right"></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let data of dataSource | filter:search" class="hover">
-      <th scope="row">{{ data.id }}</th>
-      <td width="40%">
-        {{ data.nome }}
-
-      <td width="40%">
-        {{ data.email }}
+      <td width="25%">
+        {{mesDisplay(data.mes)}}
       </td>
+      <td>
+        {{ data.temperatura + '°' }}
+      </td>
+
       <td class="text-center"  width="10px">
         <button type="button" class="btn btn-sm bg-transparent pointer" (click)="edit(data)">
           <span class="bi bi-pencil-square text-success"></span>
