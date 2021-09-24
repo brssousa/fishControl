@@ -8,6 +8,8 @@ import {CommunsModule} from "./communs/communs.module";
 import {CadastroModule} from "./cadastro/cadastro.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ModalModule} from 'ngx-bootstrap/modal';
+import {MovimentosModule} from "./movimentos/movimentos.module";
+import {NgxMaskModule} from "ngx-mask";
 
 
 @NgModule({
@@ -19,9 +21,11 @@ import {ModalModule} from 'ngx-bootstrap/modal';
     AppRoutingModule,
     CommunsModule,
     CadastroModule,
+    MovimentosModule,
     HttpClientModule,
     FormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
