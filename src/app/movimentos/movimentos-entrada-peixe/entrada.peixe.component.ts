@@ -6,6 +6,7 @@ import {EntradaPeixe} from "../../model/entrada.peixe";
 import {TanqueService} from "../../services/tanque.service";
 import {Tanque} from "../../model/tanque";
 import {Peixe} from "../../model/peixe";
+import {EntradaPeixeService} from "../../services/entrada.peixe.service";
 
 @Component({
   selector: 'entrada-peixe',
@@ -20,7 +21,7 @@ export class EntradaPeixeComponent extends BaseCrudComponent<EntradaPeixe> {
 
   info: string = '';
 
-  constructor(public mainService: PeixeService,
+  constructor(public mainService: EntradaPeixeService,
               public tanqueServie: TanqueService,
               public peixeServie: PeixeService,
               public alertService: AlertModelService) {
