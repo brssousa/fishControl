@@ -6,7 +6,10 @@ import br.com.getservicos.fishControl.repository.TabelaCrescimentoRepository;
 import br.com.getservicos.fishControl.service.api.TabelaCrescimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TabelaCrescimentoServiceImpl extends AbstractCrudService<TabelaCrescimento, Integer> implements TabelaCrescimentoService {
@@ -17,5 +20,12 @@ public class TabelaCrescimentoServiceImpl extends AbstractCrudService<TabelaCres
     @Override
     public JpaRepository getRepository() {
         return tabelaCrescimentoRepository;
+    }
+
+    @Override
+    public void salvarLista(@NonNull List<TabelaCrescimento> list) {
+        list.stream().forEach( item -> {
+            tabelaCrescimentoRepository.save(item);
+        });
     }
 }

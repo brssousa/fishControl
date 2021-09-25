@@ -27,10 +27,16 @@ public class TabelaCrescimentoResource {
         }
     }
 
-    @PostMapping("/create")
+    /*@PostMapping("/create")
     public ResponseEntity<TabelaCrescimento> save(@RequestBody TabelaCrescimento entity) {
         TabelaCrescimento save = tabelaCrescimentoService.save(entity);
         return ResponseEntity.status(HttpStatus.CREATED).body(save);
+    }
+
+    @PostMapping("/saveList")
+    public ResponseEntity<TabelaCrescimento> saveList(@RequestBody List<TabelaCrescimento> list) {
+        tabelaCrescimentoService.salvarLista(list);
+        return ResponseEntity.ok(null);
     }
 
     @PutMapping("/edit")
@@ -52,5 +58,5 @@ public class TabelaCrescimentoResource {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 }
