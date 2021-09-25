@@ -30,10 +30,13 @@ export class BaseCrudComponent<T> implements OnInit {
   msgError: string;
 
   constructor(mainservice: any,
-              alertService: AlertModelService) {
+              alertService: AlertModelService,
+              populaDataSource: boolean = true) {
     this.service = mainservice;
     this.alertService = alertService;
-    this.list();
+    if (populaDataSource) {
+      this.list();
+    }
   }
 
   ngOnInit(): void {

@@ -25,7 +25,7 @@ export class EntradaPeixeComponent extends BaseCrudComponent<EntradaPeixe> {
               public tanqueServie: TanqueService,
               public peixeServie: PeixeService,
               public alertService: AlertModelService) {
-    super(mainService,alertService)
+    super(mainService,alertService,false)
   }
 
   ngOnInit() {
