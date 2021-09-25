@@ -1,0 +1,29 @@
+<header
+  titulo="Tabela Crescimento Peixe"
+  [modoEdit]="false"
+  [modoList]="true">
+</header>
+
+<!-- GRID -->
+<div class="listas" *ngIf="dataSource.length>0">
+  <table class="table table-striped" style="height: 100%">
+    <thead>
+    <tr class="table-primary ">
+      <th scope="col" width="30px">#</th>
+      <th #cellElement scope="col">Fase</th>
+      <th scope="col" class="text-center">Semana</th>
+      <th scope="col" class="text-center">Peso Inicial</th>
+      <th scope="col" class="text-center">Peso Final</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of dataSource | filter:search" class="hover">
+      <th scope="row">{{ data.id }}</th>
+      <td>{{ data.fase }}</td>
+      <td class="text-center">{{ data.semana }}</td>
+      <td class="text-center">{{ data.pesoInicial + 'g' }}</td>
+      <td class="text-center">{{ data.pesoFinal + 'g' }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

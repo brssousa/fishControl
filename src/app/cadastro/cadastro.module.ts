@@ -15,6 +15,9 @@ import {CadastroPeixeComponent} from "./cadastro-peixe/cadastro.peixe.component"
 import {CadastroTemperaturaComponent} from "./cadastro-temperatura/cadastro.temperatura.component";
 import {TemperaturaService} from "../services/temperatura.service";
 import {CollapseModule} from "ngx-bootstrap/collapse";
+import {TabelaCrescimentoService} from "../services/tabela.crescimento.service";
+import {TabelaCrescimentocomponent} from "./cadastro-tabela-crescimento/tabela.crescimentocomponent";
+import {NgxMaskModule} from "ngx-mask";
 
 
 @NgModule({
@@ -22,7 +25,8 @@ import {CollapseModule} from "ngx-bootstrap/collapse";
     CadastroUsuarioComponent,
     CadastroTanqueComponent,
     CadastroPeixeComponent,
-    CadastroTemperaturaComponent
+    CadastroTemperaturaComponent,
+    TabelaCrescimentocomponent
     ],
   exports: [],
   imports: [
@@ -31,6 +35,7 @@ import {CollapseModule} from "ngx-bootstrap/collapse";
     Ng2SearchPipeModule,
     UtilModule,
     CommunsModule,
+    NgxMaskModule,
   ],
   providers: [
     UsuarioService,
@@ -39,6 +44,6 @@ import {CollapseModule} from "ngx-bootstrap/collapse";
     TanqueService,
     PeixeService,
     TemperaturaService,
-    ]
+    TabelaCrescimentoService,]
 })
 export class CadastroModule { }
