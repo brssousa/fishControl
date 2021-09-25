@@ -8,7 +8,7 @@ import java.util.Date;
 public class EntradaPeixe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer quantidade;
@@ -20,10 +20,12 @@ public class EntradaPeixe {
 
     private BigDecimal valor;
 
-    @ManyToOne(fetch = FetchType.EAGER,  cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tanque")
     private Tanque tanque;
 
-    @ManyToOne(fetch = FetchType.EAGER,  cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "peixe")
     private Peixe peixe;
 
     public EntradaPeixe() {
