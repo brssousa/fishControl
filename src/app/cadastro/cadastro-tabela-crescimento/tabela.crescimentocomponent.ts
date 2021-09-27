@@ -11,14 +11,38 @@ import {TabelaCrescimentoService} from "../../services/tabela.crescimento.servic
 })
 export class TabelaCrescimentocomponent extends BaseCrudComponent<TabelaCrescimento> {
 
-
+  filterDataSource: TabelaCrescimento[]=[];
   constructor(public mainService: TabelaCrescimentoService,
               public alertService: AlertModelService) {
     super(mainService,alertService)
   }
 
   ngOnInit() {
+    this.filtro()
     this.filter = new TabelaCrescimento();
+  }
+
+  filtro(){
+    setTimeout(()=>{
+      this.filterDataSource = [];
+      if ((this.mainForm.controls.semana.value=="" || this.mainForm.controls.semana.value==undefined) &&
+          (this.mainForm.controls.peso.value=="" || this.mainForm.controls.peso.value==undefined)) {
+          this.filterDataSource = this.dataSource;
+          return;
+      }
+      this.dataSource.forEach(dado => {
+        if(this.mainForm.controls.semana.value>0) {
+          if (dado.semana == this.filter.semana) {
+            this.filterDataSource.push(dado);
+          }
+        }
+        if(this.mainForm.controls.peso.value>0) {
+          if (!(dado.pesoInicial > this.filter.pesoInicial || dado.pesoFinal < this.filter.pesoInicial)) {
+            this.filterDataSource.push(dado);
+          }
+        }
+      })
+    },100)
   }
 
 }
