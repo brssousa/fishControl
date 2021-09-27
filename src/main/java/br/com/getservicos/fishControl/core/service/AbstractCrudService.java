@@ -12,8 +12,8 @@ public abstract class AbstractCrudService<T, ID> implements BaseCrudService<T, I
     public T save(T entity) {
         Object var;
         this.beforeSave(entity);
-        this.getRepository().save(entity);
-        this.afterSave(entity);
+        /*this.getRepository().save(entity);
+        this.afterSave(entity);*/
         var = entity;
         return (T) var;
     }

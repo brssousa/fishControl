@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -27,5 +28,10 @@ public class TabelaCrescimentoServiceImpl extends AbstractCrudService<TabelaCres
         list.stream().forEach( item -> {
             tabelaCrescimentoRepository.save(item);
         });
+    }
+
+    @Override
+    public TabelaCrescimento getByPeso(BigDecimal peso) {
+        return tabelaCrescimentoRepository.getByPesoInicialContainsAndPesoFinalContaining(peso);
     }
 }
