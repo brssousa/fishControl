@@ -16,7 +16,7 @@ import {CadastroTemperaturaComponent} from "./cadastro-temperatura/cadastro.temp
 import {TemperaturaService} from "../services/temperatura.service";
 import {CollapseModule} from "ngx-bootstrap/collapse";
 import {TabelaCrescimentoService} from "../services/tabela.crescimento.service";
-import {TabelaCrescimentocomponent} from "./cadastro-tabela-crescimento/tabela.crescimentocomponent";
+import {TabelaCrescimentoComponent} from "./cadastro-tabela-crescimento/tabela.crescimento.component";
 import {NgxMaskModule} from "ngx-mask";
 
 
@@ -26,7 +26,7 @@ import {NgxMaskModule} from "ngx-mask";
     CadastroTanqueComponent,
     CadastroPeixeComponent,
     CadastroTemperaturaComponent,
-    TabelaCrescimentocomponent
+    TabelaCrescimentoComponent
     ],
   exports: [],
   imports: [

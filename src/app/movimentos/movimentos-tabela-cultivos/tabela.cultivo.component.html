@@ -1,0 +1,29 @@
+<header
+  titulo="Tabela Cultivo"
+  [modoEdit]="false"
+  [modoList]="true">
+</header>
+
+<!-- GRID -->
+<div>
+  <table class="table table-striped" style="height: 100%">
+    <thead>
+    <tr class="table-primary ">
+      <th #cellElement scope="col" width="20%">Tanque</th>
+      <th scope="col" class="text-center">Peixe</th>
+      <th scope="col" class="text-center">Semana</th>
+      <th scope="col" class="text-center" width="30%">Peso</th>
+      <th scope="col" class="text-center">Quantidade</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of dataSource" class="hover">
+      <td>{{ data.tanque.tanque }}</td>
+      <td>{{ data.peixe.peixe }}</td>
+      <td class="text-center">{{ data.semana.semana}}</td>
+      <td class="text-center">{{ 'Dê ' + data.semana.pesoInicial + 'g Até ' + data.semana.pesoFinal + 'g' }}</td>
+      <td class="text-center">{{ data.quantidade }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

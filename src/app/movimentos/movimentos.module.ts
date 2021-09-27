@@ -10,11 +10,14 @@ import {EntradaPeixeComponent} from "./movimentos-entrada-peixe/entrada.peixe.co
 import {TanqueService} from "../services/tanque.service";
 import {PeixeService} from "../services/peixe.service";
 import {NgxMaskModule} from "ngx-mask";
+import {TabelaCultivoComponent} from "./movimentos-tabela-cultivos/tabela.cultivo.component";
+import {TabelaCrescimentoService} from "../services/tabela.crescimento.service";
 
 
 @NgModule({
   declarations: [
     EntradaPeixeComponent,
+    TabelaCultivoComponent
     ],
   exports: [],
   imports: [
@@ -31,6 +34,7 @@ import {NgxMaskModule} from "ngx-mask";
     EntradaPeixeService,
     TanqueService,
     PeixeService,
+    TabelaCrescimentoService
     ]
 })
 export class MovimentosModule { }
