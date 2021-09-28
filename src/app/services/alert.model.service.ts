@@ -15,9 +15,14 @@ export class AlertModelService {
     const bsModelRef = this.modelService.show(AlertModalComponent);
     bsModelRef.content.type = type;
     bsModelRef.content.message = message;
+    let tempo: number = 2000;
+    if(message.length>40){
+      tempo = 5000;
+    }
+
     setTimeout( x => {
       bsModelRef.hide();
-    }, 2000);
+    }, tempo);
   }
 
   showAlertError(message: string) {

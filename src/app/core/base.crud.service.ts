@@ -1,8 +1,9 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 export class BaseCrudService<T> {
 
-  private readonly API = 'http://localhost:8080';
+  protected readonly API = 'http://localhost:8080';
   protected _path: string;
   protected _http: HttpClient;
   protected httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
@@ -21,6 +22,14 @@ export class BaseCrudService<T> {
     } else {
       return this._http.post(this.API + this._path + "/create", dados);
     }
+  }
+
+  update(dados: any) {
+    this.save(dados);
+  }
+
+  getById(id: number): Observable<T> {
+    return this._http.get<T>(this.API + this._path + "/list/" + id, this.httpOptions);
   }
 
   delete(id: number) {

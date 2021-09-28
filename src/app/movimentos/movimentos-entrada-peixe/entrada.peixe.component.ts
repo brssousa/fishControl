@@ -7,6 +7,7 @@ import {TanqueService} from "../../services/tanque.service";
 import {Tanque} from "../../model/tanque";
 import {Peixe} from "../../model/peixe";
 import {EntradaPeixeService} from "../../services/entrada.peixe.service";
+import {TabelaCultivoService} from "../../services/tabela.cultivo.service";
 
 @Component({
   selector: 'entrada-peixe',
@@ -20,10 +21,12 @@ export class EntradaPeixeComponent extends BaseCrudComponent<EntradaPeixe> {
   peixes: Peixe[]=[];
 
   info: string = '';
+  style: string;
 
   constructor(public mainService: EntradaPeixeService,
-              public tanqueServie: TanqueService,
-              public peixeServie: PeixeService,
+              private tanqueServie: TanqueService,
+              private peixeServie: PeixeService,
+              private tabelaCultivoServico: TabelaCultivoService,
               public alertService: AlertModelService) {
     super(mainService,alertService,false)
   }
@@ -49,17 +52,40 @@ export class EntradaPeixeComponent extends BaseCrudComponent<EntradaPeixe> {
     this.peixeServie.list().subscribe( peixes => this.peixes = peixes);
   }
 
-  infoTanque(id: number){
-    if(id){
-      this.tanques.forEach( tanque => {
-        if(tanque.id == id) {
-          this.info = `Capacidade: ${tanque.capacidade}
-          | Quantidade: 0
-          | Peso: 0
-          | Semana: 0`
+  infoTanque(id: number) {
+    if (id) {
+      this.tanques.forEach(tanque => {
+        if (tanque.id == id) {
+          this.filter.tanque = tanque;
+          this.tabelaCultivoServico.getByTanque(tanque.id).subscribe(dados => {
+            if (dados) {
+              if (dados.quantidade > tanque.capacidade) {
+                this.style = "danger"
+              } else {
+                this.style = "info"
+              }
+              this.info = `Capacidade: ${tanque.capacidade}
+              | Quantidade: ${dados.quantidade}
+              | Peso: Dê ${dados.semana.pesoInicial}g até ${dados.semana.pesoFinal}g
+              | Semana: ${dados.semana.semana}`
+            } else {
+              this.style = "info"
+              this.info = `Capacidade: ${tanque.capacidade}`
+            }
+          })
         }
       })
     }
+  }
+
+  validator() {
+    if(this.isNew()){
+      if(this.mainForm.controls.quantidade.value > this.filter.tanque.capacidade && this.filter.tanque.limite){
+        this.alertService.showAlertError(`A quantidade é maior que a capacidade do ${this.filter.tanque.tanque}`);
+        return;
+      }
+    }
+    super.validator();
   }
 
 }

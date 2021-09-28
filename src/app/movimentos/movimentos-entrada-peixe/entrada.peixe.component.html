@@ -15,7 +15,7 @@
         <option *ngFor="let tanque of tanques" [value]="tanque.id">{{tanque.tanque}}</option>
       </select>
       <div class="invalid-feedback" *ngIf="!tanque.valid">Selecione um Tanque</div>
-      <span class="badge badge-info" *ngIf="filter.tanque.id">{{ info }}</span>
+      <span class="badge badge-{{style}}" *ngIf="filter.tanque.id">{{ info }}</span>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -40,7 +40,7 @@
       </div>
       <div class="form-group col-md-4">
         <label for="peso">Peso</label>
-        <input type="text" class="form-control" id="peso" name="peso" [(ngModel)]="filter.peso" required #peso="ngModel" mask="0,000">
+        <input type="text" class="form-control" id="peso" name="peso" [(ngModel)]="filter.peso" required #peso="ngModel">
         <div class="invalid-feedback" *ngIf="!peso.valid">Peso é obrigatótio.</div>
       </div>
       <div class="form-group col-md-4">

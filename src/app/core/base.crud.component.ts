@@ -5,6 +5,7 @@ import {compare, NgbdSortableHeader, SortEvent} from "../util/sort/NgbdSortableH
 import {TypeAlertEnum} from "../model/type-alert-enum";
 import {ValidatorEnum} from "../model/validator.enum";
 import {FormGroup} from "@angular/forms";
+import {error} from "@angular/compiler/src/util";
 
 @Directive()
 export class BaseCrudComponent<T> implements OnInit {
@@ -31,12 +32,10 @@ export class BaseCrudComponent<T> implements OnInit {
 
   constructor(mainservice: any,
               alertService: AlertModelService,
-              populaDataSource: boolean = true) {
+              private populaDataSource: boolean = true) {
     this.service = mainservice;
     this.alertService = alertService;
-    if (populaDataSource) {
-      this.list();
-    }
+    this.list();
   }
 
   ngOnInit(): void {
@@ -70,10 +69,12 @@ export class BaseCrudComponent<T> implements OnInit {
   }
 
   list() {
-    this.service.list().subscribe( dados => {
-        this.dataSource = dados
-      },
-      error => this.alertService.showAlertError('Erro ao carregar dados do servidor.'));
+    if(this.populaDataSource) {
+      this.service.list().subscribe( dados => {
+          this.dataSource = dados
+        },
+        error => this.alertService.showAlertError('Erro ao carregar dados do servidor.'));
+    }
   }
 
   edit(dados: T){
@@ -109,11 +110,15 @@ export class BaseCrudComponent<T> implements OnInit {
     if(dados){
       this.service.save(dados).subscribe( dados => {
             this.filter = dados;
-            this.mode();
+            this.mainForm.reset();
+            this.editMode = false;
             this.alertService.showAlertSuccess('Registro Salvo com Sucesso.')
             this.reFlash();
+
           },
-          error => this.alertService.showAlertError('Erro ao Salvar dados no servidor.'));
+          error => error.error ?
+            this.alertService.showAlertError(error.error) :
+            this.alertService.showAlertError('Erro ao Salvar dados no servidor.'));
     }
   }
 
