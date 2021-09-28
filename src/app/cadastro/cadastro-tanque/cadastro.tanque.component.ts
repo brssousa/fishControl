@@ -12,6 +12,7 @@ import {Tanque} from "../../model/tanque";
 export class CadastroTanqueComponent extends BaseCrudComponent<Tanque> {
 
 
+  tanqueList: Tanque[]=[];
   constructor(public mainService: TanqueService,
               public alertService: AlertModelService) {
     super(mainService,alertService)
@@ -19,6 +20,9 @@ export class CadastroTanqueComponent extends BaseCrudComponent<Tanque> {
 
   ngOnInit() {
     this.filter = new Tanque();
+    setTimeout(()=>{
+      this.tanqueList = this.dataSource.sort((a,b)=>(a.tanque < b.tanque) ? -1 : 1)
+    },100)
   }
 
   clean() {

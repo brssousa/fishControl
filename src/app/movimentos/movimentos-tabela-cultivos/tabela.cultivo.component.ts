@@ -11,6 +11,7 @@ import {TabelaCultivoService} from "../../services/tabela.cultivo.service";
 })
 export class TabelaCultivoComponent extends BaseCrudComponent<TabelaCultivo> {
 
+  tabelaCultivoList: TabelaCultivo[]=[];
   constructor(public mainService: TabelaCultivoService,
               public alertService: AlertModelService) {
     super(mainService,alertService
@@ -19,6 +20,9 @@ export class TabelaCultivoComponent extends BaseCrudComponent<TabelaCultivo> {
 
   ngOnInit() {
     this.filter = new TabelaCultivo();
+    setTimeout(()=>{
+      this.tabelaCultivoList = this.dataSource.sort((a, b) => (a.tanque.tanque < b.tanque.tanque) ? -1 : 1);
+    },100)
   }
 
 }
