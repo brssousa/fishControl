@@ -15,7 +15,7 @@ public class Tanque implements Serializable {
 
     private String tanque;
 
-    private String capacidade;
+    private Integer capacidade;
 
     private String dimensao;
 
@@ -24,7 +24,7 @@ public class Tanque implements Serializable {
     public Tanque() {
     }
 
-    public Tanque(Integer id, String tanque, String capacidade, String dimensao) {
+    public Tanque(Integer id, String tanque, Integer capacidade, String dimensao) {
         this.id = id;
         this.tanque = tanque;
         this.capacidade = capacidade;
@@ -47,11 +47,11 @@ public class Tanque implements Serializable {
         this.tanque = tanque;
     }
 
-    public String getCapacidade() {
+    public Integer getCapacidade() {
         return capacidade;
     }
 
-    public void setCapacidade(String capacidade) {
+    public void setCapacidade(Integer capacidade) {
         this.capacidade = capacidade;
     }
 

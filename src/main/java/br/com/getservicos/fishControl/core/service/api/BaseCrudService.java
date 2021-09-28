@@ -10,10 +10,9 @@ public interface BaseCrudService<T, ID> {
     JpaRepository getRepository();
 
     List<T> findAll();
-    T save(T entity);
+    T save(T entity) throws Exception;
     T update(T entity);
     void delete(Integer entity);
-    Optional<T> findById(Integer id);
-
+    T findById(Integer id);
 
 }

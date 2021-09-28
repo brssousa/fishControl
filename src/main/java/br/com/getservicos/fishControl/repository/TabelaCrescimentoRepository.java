@@ -8,6 +8,4 @@ import java.math.BigDecimal;
 
 @Repository
 public interface TabelaCrescimentoRepository extends JpaRepository<TabelaCrescimento, Integer> {
-
-    TabelaCrescimento getByPesoInicialContainsAndPesoFinalContaining(BigDecimal peso);
 }

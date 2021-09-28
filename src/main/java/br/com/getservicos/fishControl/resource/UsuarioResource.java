@@ -27,7 +27,7 @@ public class UsuarioResource {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Usuario> save(@RequestBody Usuario entity) {
+    public ResponseEntity<Usuario> save(@RequestBody Usuario entity) throws Exception {
         Usuario save = usuarioService.save(entity);
         return ResponseEntity.status(HttpStatus.CREATED).body(save);
     }
@@ -45,9 +45,9 @@ public class UsuarioResource {
 
     @GetMapping("/list/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable(value = "id") Integer id) {
-        Optional<Usuario> entity = usuarioService.findById(id);
-        if(entity.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(entity.get());
+        Usuario entity = usuarioService.findById(id);
+        if(entity!=null) {
+            return ResponseEntity.status(HttpStatus.OK).body(entity);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -28,6 +28,17 @@ public class TabelaCultivo {
     @Temporal(TemporalType.TIMESTAMP)
     private Date ultimaAtualizacao;
 
+    public TabelaCultivo() {
+    }
+
+    public TabelaCultivo(Tanque tanque, Peixe peixe, TabelaCrescimento semana, Integer quantidade, Date ultimaAtualizacao) {
+        this.tanque = tanque;
+        this.peixe = peixe;
+        this.semana = semana;
+        this.quantidade = quantidade;
+        this.ultimaAtualizacao = ultimaAtualizacao;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -7,7 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TabelaCultivoRepository extends JpaRepository<TabelaCultivo, Integer> {
-
-    @Query("select c from TabelaCultivo c where c.tanque.id is not null and c.tanque.tanque = :tanque")
-    TabelaCultivo getByTanque(String tanque);
 }

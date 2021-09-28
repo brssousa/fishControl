@@ -28,7 +28,7 @@ public class TanqueResource {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Tanque> save(@RequestBody Tanque entity) {
+    public ResponseEntity<Tanque> save(@RequestBody Tanque entity) throws Exception {
         Tanque save = tanqueService.save(entity);
         return ResponseEntity.status(HttpStatus.CREATED).body(save);
     }
@@ -46,9 +46,9 @@ public class TanqueResource {
 
     @GetMapping("/list/{id}")
     public ResponseEntity<Tanque> getById(@PathVariable(value = "id") Integer id) {
-        Optional<Tanque> entity = tanqueService.findById(id);
-        if(entity.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(entity.get());
+        Tanque entity = tanqueService.findById(id);
+        if(entity!=null) {
+            return ResponseEntity.status(HttpStatus.OK).body(entity);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

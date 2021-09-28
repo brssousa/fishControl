@@ -28,7 +28,7 @@ public class TemperaturaResource {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Temperatura> save(@RequestBody Temperatura entity) {
+    public ResponseEntity<Temperatura> save(@RequestBody Temperatura entity) throws Exception {
         Temperatura save = temperaturaService.save(entity);
         return ResponseEntity.status(HttpStatus.CREATED).body(save);
     }
@@ -46,9 +46,9 @@ public class TemperaturaResource {
 
     @GetMapping("/list/{id}")
     public ResponseEntity<Temperatura> getById(@PathVariable(value = "id") Integer id) {
-        Optional<Temperatura> entity = temperaturaService.findById(id);
-        if(entity.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(entity.get());
+        Temperatura entity = temperaturaService.findById(id);
+        if(entity!=null) {
+            return ResponseEntity.status(HttpStatus.OK).body(entity);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

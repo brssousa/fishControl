@@ -28,7 +28,7 @@ public class PeixeResource {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Peixe> save(@RequestBody Peixe entity) {
+    public ResponseEntity<Peixe> save(@RequestBody Peixe entity) throws Exception {
         Peixe save = peixeService.save(entity);
         return ResponseEntity.status(HttpStatus.CREATED).body(save);
     }
@@ -46,9 +46,9 @@ public class PeixeResource {
 
     @GetMapping("/list/{id}")
     public ResponseEntity<Peixe> getById(@PathVariable(value = "id") Integer id) {
-        Optional<Peixe> entity = peixeService.findById(id);
-        if(entity.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(entity.get());
+        Peixe entity = peixeService.findById(id);
+        if(entity!=null) {
+            return ResponseEntity.status(HttpStatus.OK).body(entity);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

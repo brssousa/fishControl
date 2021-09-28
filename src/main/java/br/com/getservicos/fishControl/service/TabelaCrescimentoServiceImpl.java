@@ -3,6 +3,8 @@ package br.com.getservicos.fishControl.service;
 import br.com.getservicos.fishControl.core.service.AbstractCrudService;
 import br.com.getservicos.fishControl.model.TabelaCrescimento;
 import br.com.getservicos.fishControl.repository.TabelaCrescimentoRepository;
+import br.com.getservicos.fishControl.repository.impl.TabelaCrescimentoRepositoryImpl;
+import br.com.getservicos.fishControl.repository.impl.TabelaCultivoRepositoryImpl;
 import br.com.getservicos.fishControl.service.api.TabelaCrescimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,6 +20,9 @@ public class TabelaCrescimentoServiceImpl extends AbstractCrudService<TabelaCres
     @Autowired
     TabelaCrescimentoRepository tabelaCrescimentoRepository;
 
+    @Autowired
+    TabelaCrescimentoRepositoryImpl tabelaCrescimentoRepositoryImpl;
+
     @Override
     public JpaRepository getRepository() {
         return tabelaCrescimentoRepository;
@@ -32,6 +37,6 @@ public class TabelaCrescimentoServiceImpl extends AbstractCrudService<TabelaCres
 
     @Override
     public TabelaCrescimento getByPeso(BigDecimal peso) {
-        return tabelaCrescimentoRepository.getByPesoInicialContainsAndPesoFinalContaining(peso);
+        return tabelaCrescimentoRepositoryImpl.getByPeso(peso);
     }
 }

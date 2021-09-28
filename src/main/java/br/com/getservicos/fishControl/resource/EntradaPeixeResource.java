@@ -28,9 +28,16 @@ public class EntradaPeixeResource {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<EntradaPeixe> save(@RequestBody EntradaPeixe entity) {
-        EntradaPeixe save = entradaPeixeService.save(entity);
-        return ResponseEntity.status(HttpStatus.CREATED).body(save);
+    public ResponseEntity save(@RequestBody EntradaPeixe entity){
+        EntradaPeixe save = null;
+        try {
+            save = entradaPeixeService.save(entity);
+            return ResponseEntity.status(HttpStatus.CREATED).body(save);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
     }
 
     @PutMapping("/edit")
@@ -46,9 +53,9 @@ public class EntradaPeixeResource {
 
     @GetMapping("/list/{id}")
     public ResponseEntity<EntradaPeixe> getById(@PathVariable(value = "id") Integer id) {
-        Optional<EntradaPeixe> entity = entradaPeixeService.findById(id);
-        if(entity.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(entity.get());
+        EntradaPeixe entity = entradaPeixeService.findById(id);
+        if(entity!=null) {
+            return ResponseEntity.status(HttpStatus.OK).body(entity);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -1,6 +1,7 @@
 package br.com.getservicos.fishControl.resource;
 
 import br.com.getservicos.fishControl.model.TabelaCultivo;
+import br.com.getservicos.fishControl.model.Tanque;
 import br.com.getservicos.fishControl.service.api.TabelaCultivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class TabelaCultivoResource {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<TabelaCultivo> save(@RequestBody TabelaCultivo entity) {
+    public ResponseEntity<TabelaCultivo> save(@RequestBody TabelaCultivo entity) throws Exception {
         TabelaCultivo save = tabelaCultivoService.save(entity);
         return ResponseEntity.status(HttpStatus.CREATED).body(save);
     }
@@ -46,11 +47,23 @@ public class TabelaCultivoResource {
 
     @GetMapping("/list/{id}")
     public ResponseEntity<TabelaCultivo> getById(@PathVariable(value = "id") Integer id) {
-        Optional<TabelaCultivo> entity = tabelaCultivoService.findById(id);
-        if(entity.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(entity.get());
+        TabelaCultivo entity = tabelaCultivoService.findById(id);
+        if(entity!=null) {
+            return ResponseEntity.status(HttpStatus.OK).body(entity);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/tanque/{id}")
+    public ResponseEntity getByTanque(@PathVariable(value = "id") Integer id) {
+        Tanque tanque = new Tanque();
+        tanque.setId(id);
+        TabelaCultivo entity = tabelaCultivoService.getByTanque(tanque);
+        if(entity!=null) {
+            return ResponseEntity.status(HttpStatus.OK).body(entity);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 }
